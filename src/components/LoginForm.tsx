@@ -51,7 +51,7 @@ const LoginForm = () => {
       });
       
       // Redirect to dashboard or another page
-      // navigate("/dashboard");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error logging in:", error);
       toast.error("Login failed", {
@@ -64,6 +64,18 @@ const LoginForm = () => {
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const goToVerification = () => {
+    const email = form.getValues().email;
+    if (email && form.getFieldState("email").invalid === false) {
+      navigate(`/verify-email?email=${encodeURIComponent(email)}`);
+    } else {
+      form.setError("email", { 
+        type: "manual", 
+        message: "Please enter a valid email first" 
+      });
+    }
   };
 
   return (
@@ -176,7 +188,16 @@ const LoginForm = () => {
         </form>
       </Form>
 
-      <div className="text-center mt-6">
+      <div className="text-center mt-6 space-y-4">
+        <Button
+          type="button"
+          variant="link"
+          className="text-hrms-primary font-medium p-0 h-auto"
+          onClick={goToVerification}
+        >
+          Need to verify your email?
+        </Button>
+        
         <p className="text-sm text-slate-600">
           Don't have an account?{" "}
           <Link

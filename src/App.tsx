@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import VerifyEmail from "./pages/VerifyEmail";
 import UpdateEmail from "./pages/UpdateEmail";
 import SetupPassword from "./pages/SetupPassword";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/update-email" element={<UpdateEmail />} />
           <Route path="/setup-password" element={<SetupPassword />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

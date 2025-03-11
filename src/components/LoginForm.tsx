@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,7 +49,7 @@ const LoginForm = () => {
         description: "Redirecting to dashboard",
       });
       
-      // Redirect to dashboard or another page
+      // Redirect to dashboard
       navigate("/dashboard");
     } catch (error) {
       console.error("Error logging in:", error);

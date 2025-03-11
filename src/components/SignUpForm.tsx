@@ -1,10 +1,9 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, Eye, EyeOff, Info } from "lucide-react";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import {
   Form,
@@ -72,8 +71,8 @@ const SignUpForm = () => {
       // Reset form
       form.reset();
       
-      // Redirect to login page (or dashboard)
-      // navigate("/login");
+      // Redirect to login page
+      navigate("/login");
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error("Failed to create account", {
@@ -341,13 +340,12 @@ const SignUpForm = () => {
       <div className="text-center mt-6">
         <p className="text-sm text-slate-600">
           Already have an account?{" "}
-          <a
-            href="#"
+          <Link
+            to="/login"
             className="text-hrms-primary hover:underline font-medium"
-            onClick={(e) => e.preventDefault()}
           >
             Log In
-          </a>
+          </Link>
         </p>
       </div>
     </div>

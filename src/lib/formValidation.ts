@@ -71,3 +71,43 @@ export const countryCodes = [
   { code: "+39", country: "IT", flag: "🇮🇹" },
   { code: "+34", country: "ES", flag: "🇪🇸" },
 ];
+
+// Login form schema
+export const loginFormSchema = z.object({
+  email: z
+    .string()
+    .email({ message: "Please enter a valid email address" }),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters" }),
+  rememberMe: z.boolean().optional().default(false),
+});
+
+export type LoginFormValues = z.infer<typeof loginFormSchema>;
+
+// Email verification schema
+export const emailUpdateSchema = z.object({
+  email: z
+    .string()
+    .email({ message: "Please enter a valid email address" }),
+});
+
+export type EmailUpdateValues = z.infer<typeof emailUpdateSchema>;
+
+// Password setup schema with password confirmation
+export const passwordSetupSchema = z
+  .object({
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters" })
+      .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter" })
+      .regex(/[0-9]/, { message: "Password must contain at least one number" })
+      .regex(/[^a-zA-Z0-9]/, { message: "Password must contain at least one special character" }),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
+
+export type PasswordSetupValues = z.infer<typeof passwordSetupSchema>;

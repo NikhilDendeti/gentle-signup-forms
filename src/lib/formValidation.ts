@@ -37,9 +37,10 @@ export const signUpFormSchema = z.object({
   employeeCount: z.string({
     required_error: "Please select number of employees",
   }),
-  termsAgreed: z.literal(true, {
-    errorMap: () => ({ message: "You must agree to the terms and privacy policy" }),
-  }),
+  termsAgreed: z.boolean()
+    .refine(val => val === true, {
+      message: "You must agree to the terms and privacy policy",
+    }),
 });
 
 export type SignUpFormValues = z.infer<typeof signUpFormSchema>;
